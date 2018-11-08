@@ -126,30 +126,6 @@ function letterClicked(event) {
   // add 'failed' when the letter is not (use [node-element].classList.add())
   // don't forget to update the hangman picture
   // make sure .letter with a success or .failed class can not be clicked
-
-  if (event.target.matches('.letter') && !gameState.lost && !gameState.won) {
-    if (!event.target.matches('.success') && !event.target.matches('.failed')) {
-      const selectedLetter = event.target.textContent;
-      let lettersFound = 0;
-      gameState.word.forEach(function (letter, index) {
-        if (letter.toUpperCase() === selectedLetter) {
-          lettersFound++;
-          const solutionLetter = document.querySelector('.solution-letter:nth-child(' + (index + 1) + ')');
-          solutionLetter.textContent = letter.toUpperCase();
-        }
-      });
-      gameState.turn++;
-      if (lettersFound > 0) {
-        gameState.lettersFound += lettersFound;
-        event.target.classList.add('success');
-      } else {
-        event.target.classList.add('failed');
-        gameState.hangman++;
-        updateHangmanPicture();
-      }
-      winOrLose();
-    }
-  }
 }
 
 initGameState();
