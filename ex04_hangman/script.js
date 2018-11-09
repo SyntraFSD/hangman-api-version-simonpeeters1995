@@ -131,8 +131,8 @@ function winOrLose() {
   // checks if the player has won or lost,
   // if so the winOrLoseContainer text should be updated with an appropriate message
   if(gameState.hangman == 9){
-      gameState.lost = true;
-      return winOrLoseContainer.textContent = 'Too bad you failed to find the word';
+    gameState.lost = true;
+    return winOrLoseContainer.textContent = 'Too bad you failed to find the word';
   } else if(gamestate.lettersFound == gameState.word.length){
     gameState.won = true;
     return winOrLoseContainer.textContent = 'You have found the word';
@@ -149,8 +149,14 @@ function letterClicked(event) {
   // add 'failed' when the letter is not (use [node-element].classList.add())
   // don't forget to update the hangman picture
   // make sure .letter with a success or .failed class can not be clicked
-}
+  const chosenLetter = event.target;
+  if(chosenLetter.matches('.letter')){
+    for(let i = 0; i < gameState.word.length; i++){
+        console.log(chosenLetter)
+    }
+  }
 
+}
 initGameState();
 
 letterContainer.addEventListener('click', letterClicked);
