@@ -80,10 +80,11 @@ function selectRandomWord() {
 
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
+
+  //solutionContainer.innerHTML='';
   let arrayLetterElementen = solutionContainer.querySelectorAll('.letter');
   arrayLetterElementen.forEach(
     (value)=>{ 
-      //console.log(value);
       value.remove();}
   );
 }
@@ -159,13 +160,16 @@ function letterClicked(event) {
 
   gameState.word.forEach((value)=>
   {
-
-  if(value==letterClicked.textContent.toLowerCase()){
-    console.log(true);
-  }else{
-    console.log(false);
-  }
-
+    if(event.target.matches('.succes')||event.target.matches('.failed')){
+      if(value==letterClicked.textContent.toLowerCase()){
+        value.classList.add('succes');
+      
+      }else{
+        value.classList.add('failed');
+        gameState.hangman +=1;
+        updateHangmanPicture();
+      }
+    }
   });    
 }
 
