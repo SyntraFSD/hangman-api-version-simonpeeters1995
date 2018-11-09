@@ -50,7 +50,7 @@ const randomWords = [
   'other',
   'prospect',
 ];
-const hangManImage=document.querySelector('#image-container');
+const hangManImage=document.querySelector('#image');
 const solutionContainer=document.querySelector('#solution-container');
 const winOrLoseContainer=document.querySelector('#win-lose-container');
 const letterContainer=document.querySelector('#letter-container');
@@ -82,7 +82,7 @@ function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
 
   //solutionContainer.innerHTML='';
-  let arrayLetterElementen = solutionContainer.querySelectorAll('.letter');
+  let arrayLetterElementen = solutionContainer.querySelectorAll('.solution-letter');
   arrayLetterElementen.forEach(
     (value)=>{ 
       value.remove();}
@@ -93,6 +93,7 @@ function fillSolutionContainer() {
   // after emptying the solutionContainer
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
+  emptySolutionContainer();
   let arrayWoord=gameState.word;
   console.log(arrayWoord);
   arrayWoord.forEach((value)=>{solutionContainer.appendChild(createNewSolutionLetter());});
@@ -154,23 +155,44 @@ function letterClicked(event) {
   // add 'failed' when the letter is not (use [node-element].classList.add())
   // don't forget to update the hangman picture
   // make sure .letter with a success or .failed class can not be clicked
+  if(event.target.matches('.letter') 
+  && !event.target.matches('.success') 
+  && !event.target.matches('.failed'))
+  {  
+    let letterCount=0;
 
-  const letterClicked = event.target.closest('.letter');
-  console.log(letterClicked.textContent.toLowerCase());
-
-  gameState.word.forEach((value)=>
-  {
-    if(event.target.matches('.succes')||event.target.matches('.failed')){
-      if(value==letterClicked.textContent.toLowerCase()){
-        value.classList.add('succes');
-      
-      }else{
-        value.classList.add('failed');
-        gameState.hangman +=1;
-        updateHangmanPicture();
+    gameState.word.forEach((value,index)=>
+    {
+      if(value===event.target.textContent.toLowerCase()){
+        letterCount+=1;
+        //console.log(`.solution-letter:nth-child(${index+1})`);
+        let solution=document.querySelector(`.solution-letter:nth-child(${index+1})`);
+        solution.textContent=value;
       }
+    });
+
+    //console.log(letterCount);
+    if(letterCount>0){
+      event.target.classList.add('success');
+      gameState.lettersFound +=letterCount;
+      gameState.turn +=1;
+      console.log(gameState.lettersFound===gameState.word.length);
+      if(gameState.lettersFound===gameState.word.length){
+        gameState.won=true;
+      }
+      winOrLose();
+    }else{
+      event.target.classList.add('failed');
+      gameState.hangman+=1;
+      updateHangmanPicture();
+      gameState.turn +=1;
+      if(gameState.hangman===9){
+        gameState.lost=true;
+      }
+      winOrLose();
     }
-  });    
+
+  }
 }
 
 initGameState(); 
