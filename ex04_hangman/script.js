@@ -78,7 +78,7 @@ function selectRandomWord() {
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
   let elements = document.queryElementsAll('.solution-letter');
-  for (i=0, elements.length > 0, i++){
+  for (i=0,  i < elements.length, i++) {
     elements[i].remove('solution-letter')};
 }
 
@@ -87,19 +87,28 @@ function fillSolutionContainer() {
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
   emptySolutionContainer();
-  
+  let solutionWord = gameState.word;
+    while (solutionContainer.children.length < solutionWord.length) {
+      let div = createNewSolutionLetter();
+      solutionContainer.appendChild(div);
+  }
 
 }
 
 function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
+    let state = document.querySelectorAll(.letter);
+    for (i=0, i < state.length, i++) {
+    state[i].classList.remove('failed', 'success')};
+  
 }
 
 function updateHangmanPicture() {
   // change the hangman picture source to the appropriate image (gameState.hangman)
   // the source of each image looks like this: 'images/hangman01.png'
   // of course the number changes, from 01 to 09
+  hang
 }
 
 
