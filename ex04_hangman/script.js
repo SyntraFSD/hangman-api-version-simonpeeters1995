@@ -77,6 +77,7 @@ function selectRandomWord() {
 }
 
 function emptySolutionContainer() {
+  // solution teacher = solutionContainer.innerHTML = '';
   // empty the solutionContainer (remove all .letter elements)
   let solutionLetter = document.querySelectorAll('.solution-letter');
   for (i = 0; i <= solutionContainer.children.length - 1; i++) {
@@ -87,9 +88,14 @@ function emptySolutionContainer() {
 
 function fillSolutionContainer() {
   // after emptying the solutionContainer
-  // fill it up with one solutionLetter (use createNewSolutionLetter)
-  // per letter in the current gamestate.word
   emptySolutionContainer();
+  // fill it up with one solutionLetter (use createNewSolutionLetter)
+  let solutionLetter = selectRandomWord();
+  while (solutionContainer.children.length < solutionLetter.length) {
+    let div = createNewSolutionLetter();
+    solutionContainer.appendChild(div);
+  }
+  // per letter in the current gamestate.word
 }
 
 function removeClassesFromAllLetters() {
