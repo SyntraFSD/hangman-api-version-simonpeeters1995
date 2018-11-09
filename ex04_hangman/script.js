@@ -76,7 +76,11 @@ function selectRandomWord() {
 
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
-  let (.letter).empty();
+  let empty = document.querySelectorAll('.solution-letter');
+  solutionContainer.forEach(function(s){
+  empty.classList.remove('solution-letter')
+  }  
+
 }
 
 function fillSolutionContainer() {
@@ -90,6 +94,8 @@ function fillSolutionContainer() {
 function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
+  [node-Element].classList.remove(failed,success)
+
 }
 
 function updateHangmanPicture() {
