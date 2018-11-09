@@ -92,8 +92,8 @@ function fillSolutionContainer() {
   let solutionWord = selectRandomWord();
   
   while (solutionContainer.children.length < solutionWord.length) {
-    let test = createNewSolutionLetter();
-    solutionContainer.appendChild(test);
+    let addLetter = createNewSolutionLetter();
+    solutionContainer.appendChild(addLetter);
   }
 
 }
@@ -109,6 +109,8 @@ function updateHangmanPicture() {
   // change the hangman picture source to the appropriate image (gameState.hangman)
   // the source of each image looks like this: 'images/hangman01.png'
   // of course the number changes, from 01 to 09
+  hangManImage.src = "images/hangman0" + gameState.hangman + ".png"
+
 }
 
 
