@@ -157,7 +157,9 @@ function letterClicked(event) {
   // make sure .letter with a success or .failed class can not be clicked
   if(event.target.matches('.letter') 
   && !event.target.matches('.success') 
-  && !event.target.matches('.failed'))
+  && !event.target.matches('.failed') 
+  && !gameState.won 
+  && !gameState.lost)
   {  
     let letterCount=0;
 
