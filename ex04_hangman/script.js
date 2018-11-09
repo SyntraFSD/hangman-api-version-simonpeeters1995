@@ -71,15 +71,20 @@ function createNewSolutionLetter() {
 
 function selectRandomWord() {
   // return random word from the randomWords array and split it up into an array
-    let randomWord = randomWords.length;
-    randomWord = Math.floor(Math.random() * randomWord);
+    let randomIndex = Math.floor(Math.random() * randomWords.length);
+    let randomWord = randomWords[randomIndex].split('');
     return randomWord;
 }
-console.log(selectRandomWord());
+//console.log(selectRandomWord());
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
+    let classSelector = document.querySelectorAll('.solution-letter');
+    for (let i = 0; i < classSelector.length; i++){
+        let letter = classSelector[i].remove();
+        return letter;
+    }
 }
-
+//console.log(emptySolutionContainer());
 function fillSolutionContainer() {
   // after emptying the solutionContainer
   // fill it up with one solutionLetter (use createNewSolutionLetter)
