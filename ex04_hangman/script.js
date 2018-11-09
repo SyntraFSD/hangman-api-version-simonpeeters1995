@@ -77,13 +77,18 @@ function selectRandomWord() {
 
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
-  
+  let elements = document.queryElementsAll('.solution-letter');
+  for (i=0, elements.length > 0, i++){
+    elements[i].remove('solution-letter')};
 }
 
 function fillSolutionContainer() {
   // after emptying the solutionContainer
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
+  emptySolutionContainer();
+  
+
 }
 
 function removeClassesFromAllLetters() {
