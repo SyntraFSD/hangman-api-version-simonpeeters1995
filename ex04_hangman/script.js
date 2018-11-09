@@ -114,7 +114,7 @@ function updateHangmanPicture() {
   // change the hangman picture source to the appropriate image (gameState.hangman)
   // the source of each image looks like this: 'images/hangman01.png'
   // of course the number changes, from 01 to 09
-  hangManImage.src = "images/hangman0" + gameState.hangman + ".png"
+  hangManImage.src = "images/hangman0" + gameState.hangman + ".png";
 
 }
 
@@ -163,21 +163,28 @@ function letterClicked(event) {
   
   if (event.target.matches(".letter") && !gameState.lost && !gameState.won) {
     const clickedLetter = event.target.textContent;
+
     let letterMatches = 0;
     gameState.word.forEach(function (letter, index) {
-      if (letter.toUppercase() === clickedLetter) {
+      if (letter.toUpperCase() === clickedLetter) {
         letterMatches++;
         const solutionLetter = solutionContainer.querySelector('.solution-letter:nth-child(' + (index + 1) + ')');
         solutionLetter.textContent = clickedLetter;
       }
     });
-    if(letterMatches > 0) {
-      gameState.lettersFound += letterMatches;
-      gameState.hangman++;
+      if(letterMatches > 0) {
+         gameState.lettersFound += letterMatches;
+         event.target.classList.add("success");
     }
+      else {
+        gameState.hangman += 1;
+         updateHangmanPicture();
+         event.target.classList.add("failed");
+    }
+
   }
 }
-
+winOrLose();
 initGameState();
 
 letterContainer.addEventListener('click', letterClicked);
