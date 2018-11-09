@@ -71,15 +71,18 @@ function createNewSolutionLetter() {
 
 function selectRandomWord() {
   // return random word from the randomWords array and split it up into an array
-  let rand = randomWords[Math.floor(Math.random()*randomWords.lenght)]
+  let randomIndex = randomWords[Math.floor(Math.random() * randomWords.length)];
+  let randomWord = randomWords[randomIndex].split('');
+  return randomWord;  
 }
 
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
   let empty = document.querySelectorAll('.solution-letter');
   solutionContainer.forEach(function(s){
-  empty.classList.remove('solution-letter')
-  }  
+    s = 
+    empty.classList.remove('solution-letter')
+  } 
 
 }
 
@@ -94,7 +97,8 @@ function fillSolutionContainer() {
 function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
-  [node-Element].classList.remove(failed,success)
+
+  [node-letterClass].classList.remove(failed,success)
 
 }
 
