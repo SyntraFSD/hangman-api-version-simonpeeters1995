@@ -51,9 +51,9 @@ const randomWords = [
   'prospect',
 ];
 const hangManImage = document.querySelector('#image');
-const solutionContainer;
-const winOrLoseContainer;
-const letterContainer;
+const solutionContainer = document.querySelector('#solution-container');
+const winOrLoseContainer = document.querySelector('#win-lose-container');
+const letterContainer = document.querySelector('#letter-container');
 const gameState = {
   word: [],
   hangman: 1,
@@ -71,6 +71,9 @@ function createNewSolutionLetter() {
 
 function selectRandomWord() {
   // return random word from the randomWords array and split it up into an array
+  let randomWord = randomWords[Math.floor(Math.random() * randomWords.length)];
+  randomWord = randomWord.split("");
+  return randomWord;
 }
 
 function emptySolutionContainer() {
