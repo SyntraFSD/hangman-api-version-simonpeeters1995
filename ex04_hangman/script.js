@@ -104,8 +104,7 @@ function removeClassesFromAllLetters() {
   let letters = document.querySelectorAll('.letter');
   for (i = 0; i < letters.length; i++) {
     letters[i].classList.remove('failed', 'success');
-  }
-  
+  } 
 }
 
 function updateHangmanPicture() {
@@ -158,6 +157,23 @@ function letterClicked(event) {
   // add 'failed' when the letter is not (use [node-element].classList.add())
   // don't forget to update the hangman picture
   // make sure .letter with a success or .failed class can not be clicked
+
+  if (event.target.matches('.letter') && !gameState.lost && !gameState.won){
+    const clickedLetter = event.target.textContent;
+    let letterMatches = 0;
+    gameState.word.forEach(function (letter, index){
+      if (letter.toUpperCase() === clickedLetter) {
+        letterMatches++;
+        const solutionLetter = solutionContainer.querySelector('.solution-letter:nth-child(' + (index +1) + ')');
+        solutionLetter.textContent = clickedLetter;
+      }
+  });
+  if(letterMatches > 0){
+    gameState.lettersFound += letterMatches;
+    } else {
+      gameState.hangman++;
+    }
+  }
 }
 
 initGameState();
