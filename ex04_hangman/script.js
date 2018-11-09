@@ -76,13 +76,14 @@ function selectRandomWord() {
 
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
-
+  let (.letter).empty();
 }
 
 function fillSolutionContainer() {
   // after emptying the solutionContainer
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
+  let createNewSolutionLetter 
   emptySolutionContainer();
 }
 
