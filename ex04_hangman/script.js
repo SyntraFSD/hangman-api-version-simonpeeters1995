@@ -79,9 +79,9 @@ function selectRandomWord() {
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
   let empty = solutionContainer.querySelectorAll('.letter');
-  empty.forEach((value)=> {
+  empty.forEach(function(value) {
     value.remove();
-  }
+  });
 }
 
 function fillSolutionContainer() {
@@ -97,7 +97,10 @@ function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
 
-  [node-letterClass].classList.remove(failed,success)
+  let letterClasses = document.querySelectorAll('.letter');
+  letterClasses.forEach(function(letterClass){
+    letterClass.classList.remove('failed','success');
+  });
 
 }
 
@@ -105,6 +108,7 @@ function updateHangmanPicture() {
   // change the hangman picture source to the appropriate image (gameState.hangman)
   // the source of each image looks like this: 'images/hangman01.png'
   // of course the number changes, from 01 to 09
+  
 }
 
 
