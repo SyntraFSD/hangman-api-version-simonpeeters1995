@@ -90,7 +90,7 @@ function fillSolutionContainer() {
   // after emptying the solutionContainer
   emptySolutionContainer();
   // fill it up with one solutionLetter (use createNewSolutionLetter)
-  let solutionWord = selectRandomWord();
+  let solutionWord = gameState.word;
   while (solutionContainer.children.length < solutionWord.length) {
     let div = createNewSolutionLetter();
     solutionContainer.appendChild(div);
@@ -102,7 +102,9 @@ function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
   let letters = document.querySelectorAll('.letter');
-  letters.classList.remove ('.failed', '.success');
+  for (i = 0; i < letters.length; i++) {
+    letters[i].classList.remove('failed', 'success');
+  }
   
 }
 
@@ -133,11 +135,16 @@ function initGameState() {
 function winOrLose() {
   // checks if the player has won or lost,
   // if so the winOrLoseContainer text should be updated with an appropriate message
-  let solutionWord = selectRandomWord();
-  if (gameState.lettersFound = solutionContainer.length){
+  let solutionWord = gameState.word;
+  if (gameState.lettersFound === solutionWord.length){
     gameState.won = true;
-  }
+    winOrLoseContainer.innerHTML = "You win!";
+  };
 
+  if (gameState.hangman === 9){
+    gameState.lost = true;
+    winOrLoseContainer.innerHTML = "You lost!";
+  }
 }
 
 function letterClicked(event) {
