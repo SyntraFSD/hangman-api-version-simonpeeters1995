@@ -108,7 +108,7 @@ function updateHangmanPicture() {
   // change the hangman picture source to the appropriate image (gameState.hangman)
   // the source of each image looks like this: 'images/hangman01.png'
   // of course the number changes, from 01 to 09
-  
+  hangManImage.src = `images/hangman0${gameState.hangman}.png`;  
 }
 
 
@@ -130,6 +130,12 @@ function initGameState() {
 function winOrLose() {
   // checks if the player has won or lost,
   // if so the winOrLoseContainer text should be updated with an appropriate message
+  if(gameState.won==true){
+    winOrLoseContainer.textContent=`Proficiat, je hebt gewonnen in ${gameState.turn} turns`;
+  }
+  else if(gameState.lost==true){
+    winOrLoseContainer.textContent=`Oeps, gestorven in ${gameState.turn} turns`;
+  }
 }
 
 function letterClicked(event) {
