@@ -72,28 +72,38 @@ function createNewSolutionLetter() {
 function selectRandomWord() {
   // return random word from the randomWords array and split it up into an array
     let randomIndex = Math.floor(Math.random() * randomWords.length);
+    
     let randomWord = randomWords[randomIndex].split('');
+
     return randomWord;
 }
 //console.log(selectRandomWord());
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
-    let classSelector = document.querySelectorAll('.solution-letter');
+    /* let classSelector = document.querySelectorAll('.solution-letter');
     for (let i = 0; i < classSelector.length; i++){
-        let letter = classSelector[i].remove();
-        return letter;
-    }
+         classSelector[i].remove();
+        return classSelector;
+    } */
+    solutionContainer.innerHTML = '';
 }
-//console.log(emptySolutionContainer());
+
 function fillSolutionContainer() {
   // after emptying the solutionContainer
+  emptySolutionContainer();
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
+  console.log(gameState.word);
+  for(let i = 0; i < gameState.word.length; i++){
+    let newDiv = createNewSolutionLetter();
+    solutionContainer.appendChild(newDiv);  
+  }
 }
 
 function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
+
 }
 
 function updateHangmanPicture() {
