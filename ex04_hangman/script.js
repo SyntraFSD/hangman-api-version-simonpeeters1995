@@ -169,7 +169,7 @@ function letterClicked(event) {
         letterCount+=1;
         //console.log(`.solution-letter:nth-child(${index+1})`);
         let solution=document.querySelector(`.solution-letter:nth-child(${index+1})`);
-        solution.textContent=value;
+        solution.textContent=value.toUpperCase();
       }
     });
 
