@@ -92,8 +92,8 @@ function fillSolutionContainer() {
   let solutionWord = selectRandomWord();
   
   while (solutionContainer.children.length < solutionWord.length) {
-    let test = document.createElement("div");
-    test.class = "solution-letter";
+    let test = createNewSolutionLetter();
+    solutionContainer.appendChild(test);
   }
 
 }
