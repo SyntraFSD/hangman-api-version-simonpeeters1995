@@ -50,7 +50,7 @@ const randomWords = [
   'other',
   'prospect',
 ];
-const hangManImage = document.querySelector('image');
+const hangManImage = document.querySelector('#image');
 const solutionContainer = document.querySelector('#solution-container');
 const winOrLoseContainer = document.querySelector('#win-lose-container');
 const letterContainer = document.querySelector('#letter-container');
@@ -95,7 +95,7 @@ function fillSolutionContainer() {
 function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
- var letter = document.querySelectorAll('#letter-container');
+ let letter = document.querySelectorAll('#letter-container');
  for (var = i; i < 27; i++){
    letter.classList.remove(success, failed)
     }
@@ -106,6 +106,9 @@ function updateHangmanPicture() {
   // the source of each image looks like this: 'images/hangman01.png'
   // of course the number changes, from 01 to 09
 
+    document.getElementById('image').src = "images/hangman" + gameState.hangman + ".png";
+
+}
 }
 
 
