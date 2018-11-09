@@ -72,13 +72,13 @@ function createNewSolutionLetter() {
 function selectRandomWord() {
   // return random word from the randomWords array and split it up into an array
   let randomWord = randomWords[Math.floor(Math.random()*randomWords.length)];
-  return randomWord;
+  return randomWord.split('');
 }
 
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
-  let elements = document.queryElementsAll('.solution-letter');
-  for (i=0,  i < elements.length, i++) {
+  let elements = document.querySelectorAll('.solution-letter');
+  for (let i = 0;  i < elements.length; i++) {
     elements[i].remove('solution-letter')};
 }
 
@@ -98,8 +98,8 @@ function fillSolutionContainer() {
 function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
-    let state = document.querySelectorAll(.letter);
-    for (i=0, i < state.length, i++) {
+    let state = document.querySelectorAll('.letter');
+    for (let i = 0; i < state.length; i++) {
     state[i].classList.remove('failed', 'success')};
   
 }
@@ -132,10 +132,11 @@ function winOrLose() {
   // checks if the player has won or lost,
   // if so the winOrLoseContainer text should be updated with an appropriate message
   let solutionWord = gameState.word
-  if  ( ) {
-  winOrLoseContainer.innerHTML = "You win"
+  if  (gameState.word === randomWords.length) {
+  return winOrLoseContainer.innerHTML = "You win"};
     
-  if
+  if (gameState.turn == 9){
+    return winOrLoseContainer.innerHTML = "You lost"};
 }
 
 function letterClicked(event) {
@@ -149,6 +150,24 @@ function letterClicked(event) {
   // add 'failed' when the letter is not (use [node-element].classList.add())
   // don't forget to update the hangman picture
   // make sure .letter with a success or .failed class can not be clicked
+
+  if (event.target.matches('.letter') && !gameState.lost && !gameState.won) {
+    const clickedLetter = event.target.textContent;
+    let letterMatches = 0;
+    gameState.word.forEach(function(letter, index){
+      if (letter.toUpperCase() === clickedLetter) {
+        letterMatches++;
+        const solutionLetter = solutionContainer.querySelector('.solution-letter:nth-child(' + (index = 1) + ')');
+        solutionLetter.textContent = clickedLetter;
+      }
+    });
+
+  if (letterMatches > 0) {
+    gameState.lettersFound += letterMatches;
+    event.target.classList.add("success");
+  };
+  }
+
 }
 
 initGameState();
