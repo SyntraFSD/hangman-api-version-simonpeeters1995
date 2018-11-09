@@ -90,8 +90,8 @@ function fillSolutionContainer() {
   // after emptying the solutionContainer
   emptySolutionContainer();
   // fill it up with one solutionLetter (use createNewSolutionLetter)
-  let solutionLetter = selectRandomWord();
-  while (solutionContainer.children.length < solutionLetter.length) {
+  let solutionWord = selectRandomWord();
+  while (solutionContainer.children.length < solutionWord.length) {
     let div = createNewSolutionLetter();
     solutionContainer.appendChild(div);
   }
@@ -104,13 +104,13 @@ function removeClassesFromAllLetters() {
   let letters = document.querySelectorAll('.letter');
   letters.classList.remove ('.failed', '.success');
   
-
 }
 
 function updateHangmanPicture() {
   // change the hangman picture source to the appropriate image (gameState.hangman)
   // the source of each image looks like this: 'images/hangman01.png'
   // of course the number changes, from 01 to 09
+  hangManImage.src = "images/hangman0" + gameState.hangman + ".png"; 
 }
 
 
@@ -133,6 +133,11 @@ function initGameState() {
 function winOrLose() {
   // checks if the player has won or lost,
   // if so the winOrLoseContainer text should be updated with an appropriate message
+  let solutionWord = selectRandomWord();
+  if (gameState.lettersFound = solutionContainer.length){
+    gameState.won = true;
+  }
+
 }
 
 function letterClicked(event) {
