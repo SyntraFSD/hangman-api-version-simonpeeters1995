@@ -114,7 +114,12 @@ function updateHangmanPicture() {
   // change the hangman picture source to the appropriate image (gameState.hangman)
   // the source of each image looks like this: 'images/hangman01.png'
   // of course the number changes, from 01 to 09
+  if (gameState.hangman <= 9) {
   hangManImage.src = "images/hangman0" + gameState.hangman + ".png";
+  }
+  else {
+    winOrLoseContainer.innerHTML = "You lost";
+  }
 
 }
 
@@ -149,6 +154,12 @@ function winOrLose() {
   }
 }
 
+function showWord(){
+  if (gameState.lost === true) {
+    winOrLoseContainer.innerHTML = gameState.word.join('');
+  }
+}
+
 function letterClicked(event) {
   // this is of course the heart of this game,
   // find out which letter is clicked
@@ -161,7 +172,7 @@ function letterClicked(event) {
   // don't forget to update the hangman picture
   // make sure .letter with a success or .failed class can not be clicked
   
-  if (event.target.matches(".letter") && !gameState.lost && !gameState.won) {
+  if (event.target.matches(".letter") && !gameState.lost && !gameState.won && !event.target.matches(".failed", ".success")) {
     const clickedLetter = event.target.textContent;
 
     let letterMatches = 0;
@@ -183,8 +194,11 @@ function letterClicked(event) {
     }
 
   }
-}
+  
 winOrLose();
+showWord();
+}
+
 initGameState();
 
 letterContainer.addEventListener('click', letterClicked);
