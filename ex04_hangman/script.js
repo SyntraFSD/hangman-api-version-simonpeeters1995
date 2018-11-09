@@ -84,12 +84,18 @@ function emptySolutionContainer() {
   }
 }
 
-function fillSolutionContainer() {
-  emptySolutionContainer();
-
+function fillSolutionContainer() {  
   // after emptying the solutionContainer
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
+  emptySolutionContainer();
+  let solutionWord = selectRandomWord();
+  
+  while (solutionContainer.children.length < solutionWord.length) {
+    let test = document.createElement("div");
+    test.class = "solution-letter";
+  }
+
 }
 
 function removeClassesFromAllLetters() {
