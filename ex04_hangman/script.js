@@ -84,7 +84,7 @@ function fillSolutionContainer() {
   // after emptying the solutionContainer
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
-    createNewSolutionLetter()
+    solutionContainer.push(createNewSolutionLetter());
 }
 
 function removeClassesFromAllLetters() {
