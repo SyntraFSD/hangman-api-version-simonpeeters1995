@@ -50,7 +50,7 @@ const randomWords = [
   'other',
   'prospect',
 ];
-const hangManImage;
+const hangManImage = document.querySelector('#image');
 const solutionContainer;
 const winOrLoseContainer;
 const letterContainer;
