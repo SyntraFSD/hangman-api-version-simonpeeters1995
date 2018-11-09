@@ -152,7 +152,6 @@ function letterClicked(event) {
   const chosenLetter = event.target;
   if(chosenLetter.matches('.letter')){
     for(let i = 0; i < gameState.word.length; i++){
-        console.log(chosenLetter)
     }
   }
 
