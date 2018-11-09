@@ -78,12 +78,9 @@ function selectRandomWord() {
 
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
-  let empty = document.querySelectorAll('.solution-letter');
-  solutionContainer.forEach(function(s){
-    s = 
-    empty.classList.remove('solution-letter')
-  } 
-
+  let empty = solutionContainer.querySelectorAll('.letter');
+  empty.forEach((value)=> {
+    value.remove();
 }
 
 function fillSolutionContainer() {
