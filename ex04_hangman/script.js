@@ -130,10 +130,10 @@ function initGameState() {
 function winOrLose() {
   // checks if the player has won or lost,
   // if so the winOrLoseContainer text should be updated with an appropriate message
-  if(gameState.hangman == 9){
+  if(gameState.hangman === 9){
     gameState.lost = true;
     return winOrLoseContainer.textContent = 'Too bad you failed to find the word';
-  } else if(gamestate.lettersFound == gameState.word.length){
+  } else if(gameState.lettersFound === gameState.word.length){
     gameState.won = true;
     return winOrLoseContainer.textContent = 'You have found the word';
   }
@@ -149,12 +149,27 @@ function letterClicked(event) {
   // add 'failed' when the letter is not (use [node-element].classList.add())
   // don't forget to update the hangman picture
   // make sure .letter with a success or .failed class can not be clicked
-  const chosenLetter = event.target;
-  if(chosenLetter.matches('.letter')){
-    for(let i = 0; i < gameState.word.length; i++){
+  if(event.target.matches('.letter') && !gameState.lost && !gameState.won && !event.target.matches('.success')&& !event.target.matches('.failed')){
+      const clickedLetter = event.target.textContent;
+      let letterMatches = 0;
+    gameState.word.forEach((letter, index) => {
+        if(letter.toUpperCase() === clickedLetter){
+            letterMatches++;
+            let solutionLetter = solutionContainer.querySelector(`.solution-letter:nth-child(${index+1})`)
+            solutionLetter.textContent = clickedLetter;
+        }
+    });
+    if(letterMatches > 0){
+        gameState.lettersFound += letterMatches;
+        event.target.classList.add('success');
+    } else{
+        event.target.classList.add('failed');
+        gameState.hangman++;
+        updateHangmanPicture();
     }
+        winOrLose();
   }
-
+console.log(gameState.hangman);
 }
 initGameState();
 
