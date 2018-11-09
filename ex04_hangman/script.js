@@ -101,6 +101,8 @@ function fillSolutionContainer() {
 function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
+  let letters = document.querySelectorAll(".letter");
+  letters.classList.remove(".failed, .success")
 }
 
 function updateHangmanPicture() {
