@@ -78,17 +78,24 @@ function selectRandomWord() {
 
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
+  let solutionLetter = document.querySelectorAll('.solution-letter');
+  for (i = 0; i <= solutionContainer.children.length - 1; i++) {
+    solutionLetter[i].remove();
+  }
 }
+
 
 function fillSolutionContainer() {
   // after emptying the solutionContainer
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
+  emptySolutionContainer();
 }
 
 function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
+
 }
 
 function updateHangmanPicture() {
@@ -111,6 +118,7 @@ function initGameState() {
   winOrLoseContainer.textContent = '';
   removeClassesFromAllLetters();
   updateHangmanPicture();
+  
 }
 
 function winOrLose() {
