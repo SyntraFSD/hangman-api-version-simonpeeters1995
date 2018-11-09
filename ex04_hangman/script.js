@@ -71,16 +71,19 @@ function createNewSolutionLetter() {
 
 function selectRandomWord() {
   // return random word from the randomWords array and split it up into an array
+  let rand = randomWords[Math.floor(Math.random()*randomWords.lenght)]
 }
 
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
+
 }
 
 function fillSolutionContainer() {
   // after emptying the solutionContainer
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
+  emptySolutionContainer();
 }
 
 function removeClassesFromAllLetters() {
