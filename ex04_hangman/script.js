@@ -81,14 +81,16 @@ function emptySolutionContainer() {
   let empty = solutionContainer.querySelectorAll('.letter');
   empty.forEach((value)=> {
     value.remove();
+  }
 }
 
 function fillSolutionContainer() {
   // after emptying the solutionContainer
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
-  let createNewSolutionLetter 
-  emptySolutionContainer();
+  let arraySolutionWord  = gameState.word;
+  console.log(arraySolutionWord);
+  arraySolutionWord.forEach((value)=>{solutionContainer.appendChild(createNewSolutionLetter());}); 
 }
 
 function removeClassesFromAllLetters() {
