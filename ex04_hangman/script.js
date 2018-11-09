@@ -52,8 +52,8 @@ const randomWords = [
 ];
 const hangManImage = document.querySelector("#image");
 const solutionContainer = document.querySelector("#solution-container");
-const winOrLoseContainer = document.querySelector(".win-lose-container");
-const letterContainer = document.querySelector(".letter-container");
+const winOrLoseContainer = document.querySelector("#win-lose-container");
+const letterContainer = document.querySelector("#letter-container");
 const gameState = {
   word: [],
   hangman: 1,
@@ -85,6 +85,8 @@ function emptySolutionContainer() {
 }
 
 function fillSolutionContainer() {
+  emptySolutionContainer();
+
   // after emptying the solutionContainer
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
@@ -111,7 +113,6 @@ function initGameState() {
   gameState.lettersFound = 0;
   gameState.won = false;
   gameState.lost = false;
-  emptySolutionContainer();
   fillSolutionContainer();
   winOrLoseContainer.textContent = '';
   removeClassesFromAllLetters();
