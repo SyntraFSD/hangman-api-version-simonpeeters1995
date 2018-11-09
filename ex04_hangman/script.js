@@ -50,10 +50,10 @@ const randomWords = [
   'other',
   'prospect',
 ];
-const hangManImage;
-const solutionContainer;
-const winOrLoseContainer;
-const letterContainer;
+const hangManImage = document.querySelector('#image');
+const solutionContainer = document.querySelector('#solution-container');
+const winOrLoseContainer = document.querySelector('#win-lose-container');
+const letterContainer = document.querySelector('#letter-container');
 const gameState = {
   word: [],
   hangman: 1,
@@ -71,29 +71,44 @@ function createNewSolutionLetter() {
 
 function selectRandomWord() {
   // return random word from the randomWords array and split it up into an array
+  let randomwoordplaats = Math.floor((Math.random() * randomWords.length));
+  let woord = randomWords[randomwoordplaats].split('');
+  return woord;
 }
+console.log(selectRandomWord());
 
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
+  solutionContainer.innerHTML = '';
+      
 }
 
 function fillSolutionContainer() {
   // after emptying the solutionContainer
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
+  emptySolutionContainer();
+    for(let i=0;i < gameState.word.length;i++){
+      let nieuweDiv = createNewSolutionLetter();
+      solutionContainer.appendChild(nieuweDiv);
+    }
 }
 
 function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
+  let letterklasse = document.querySelectorAll('.letter');
+  letterklasse.forEach(letterklas => {
+    letterklas.classList.remove ('failed', 'succes');
+  });
 }
 
 function updateHangmanPicture() {
   // change the hangman picture source to the appropriate image (gameState.hangman)
   // the source of each image looks like this: 'images/hangman01.png'
   // of course the number changes, from 01 to 09
+  hangManImage.src =`ìmages/hangman0$(gameState.hangman).png`;
 }
-
 
 function initGameState() {
   // this function initialises the gameState and playfield (html)
@@ -113,9 +128,29 @@ function initGameState() {
 function winOrLose() {
   // checks if the player has won or lost,
   // if so the winOrLoseContainer text should be updated with an appropriate message
+  if (gameState.hangman == 9){
+    gameState.lost=true;
+    return winOrLoseContainer.textContent = "Je hebt woord niet gevonden";
+  }
+  else if (gameState.lettersFound == gameState.word.length){
+    gameState.won =true;
+    return winOrLoseContainer.textContent = "Proficiat je het het woord gevonden";}
 }
 
 function letterClicked(event) {
+
+  let gekozenLetter = event.target;  
+  if(event.target.matches(".letter") && !gameState.lost && !gameState.won){
+      let teller = 0;
+      for(let i=0;i < gameState.word.length;i++){
+        let huidigeLetter = gameState.word[i];
+        if (gekozenLetter == huidigeletter)
+           
+        teller += 1;
+      }
+  }
+
+
   // this is of course the heart of this game,
   // find out which letter is clicked
   // check if that letter is in in the current word (beware of upper/lowercase)
