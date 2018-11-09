@@ -50,10 +50,10 @@ const randomWords = [
   'other',
   'prospect',
 ];
-const hangManImage;
-const solutionContainer;
-const winOrLoseContainer;
-const letterContainer;
+const hangManImage = document.querySelector('image');
+const solutionContainer = document.querySelector('#solution-container');
+const winOrLoseContainer = document.querySelector('#win-lose-container');
+const letterContainer = document.querySelector('#letter-container');
 const gameState = {
   word: [],
   hangman: 1,
@@ -71,16 +71,20 @@ function createNewSolutionLetter() {
 
 function selectRandomWord() {
   // return random word from the randomWords array and split it up into an array
+    return randomWords.value;
+
 }
 
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
+    delete solutionContainer;
 }
 
 function fillSolutionContainer() {
   // after emptying the solutionContainer
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
+    createNewSolutionLetter()
 }
 
 function removeClassesFromAllLetters() {
@@ -123,7 +127,7 @@ function letterClicked(event) {
   // update the gameState
   // add the correct class to the clicked letter (event.target)
   // add 'success' when the letter is found
-  // add 'failed' when the letter is not (use [node-element].classList.add())
+  // add 'failed' when the letter is not (use [node-element].classList.add('succes'))
   // don't forget to update the hangman picture
   // make sure .letter with a success or .failed class can not be clicked
 }
