@@ -160,10 +160,9 @@ function letterClicked(event) {
   // add 'failed' when the letter is not (use [node-element].classList.add())
   // don't forget to update the hangman picture
   // make sure .letter with a success or .failed class can not be clicked
-  for (let i = 0; letters.length; i++) {
-    if (letterContainer[i].matches(gameState.word.value)) {
-      console.log('The ' + letterContainer[i].textContent + ' is endangered!');
-    }
+  if (event.target.matches(gameState.word.value)) {
+    
+  }
  
 
 }
