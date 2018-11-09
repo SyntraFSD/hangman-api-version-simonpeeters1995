@@ -50,10 +50,10 @@ const randomWords = [
   'other',
   'prospect',
 ];
-const hangManImage;
-const solutionContainer;
-const winOrLoseContainer;
-const letterContainer;
+const hangManImage = document.querySelector('#image');
+const solutionContainer = document.querySelector('#solution-container');
+const winOrLoseContainer = document.querySelector('#win-lose-container');
+const letterContainer = document.querySelector('#letter-container');
 const gameState = {
   word: [],
   hangman: 1,
