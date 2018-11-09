@@ -92,7 +92,7 @@ function fillSolutionContainer() {
   // after emptying the solutionContainer
   // fill it up with one solutionLetter (use createNewSolutionLetter)
   // per letter in the current gamestate.word
-  let arrayWoord=selectRandomWord();
+  let arrayWoord=gameState.word;
   console.log(arrayWoord);
   arrayWoord.forEach((value)=>{solutionContainer.appendChild(createNewSolutionLetter());});
 
@@ -101,7 +101,10 @@ function fillSolutionContainer() {
 function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
-  
+  let letters=letterContainer.querySelectorAll('letter')
+  letters.forEach((value)=>{
+    value.classList.remove('succes','failed');
+  });
 
 }
 
@@ -109,6 +112,8 @@ function updateHangmanPicture() {
   // change the hangman picture source to the appropriate image (gameState.hangman)
   // the source of each image looks like this: 'images/hangman01.png'
   // of course the number changes, from 01 to 09
+  hangManImage.src = `images/hangman0${gameState.hangman}.png`;
+  //console.log(`images/hangman0${gameState.hangman}.png`);
 }
 
 
@@ -130,6 +135,11 @@ function initGameState() {
 function winOrLose() {
   // checks if the player has won or lost,
   // if so the winOrLoseContainer text should be updated with an appropriate message
+  if(gameState.won==true){
+    winOrLoseContainer.textContent=`Proficiat, je hebt gewonnen in ${gameState.turn} turns`;
+  }else if(gameState.lost==true){
+    winOrLoseContainer.textContent=`Oeps, gestorven in ${gameState.turn} turns`;
+  }
 }
 
 function letterClicked(event) {
@@ -143,9 +153,23 @@ function letterClicked(event) {
   // add 'failed' when the letter is not (use [node-element].classList.add())
   // don't forget to update the hangman picture
   // make sure .letter with a success or .failed class can not be clicked
+
+  const letterClicked = event.target.closest('.letter');
+  console.log(letterClicked.textContent.toLowerCase());
+
+  gameState.word.forEach((value)=>
+  {
+
+  if(value==letterClicked.textContent.toLowerCase()){
+    console.log(true);
+  }else{
+    console.log(false);
+  }
+
+  });    
 }
 
-initGameState();
+initGameState(); 
 
 letterContainer.addEventListener('click', letterClicked);
 winOrLoseContainer.addEventListener('click', initGameState);
