@@ -51,7 +51,7 @@ const randomWords = [
   'prospect',
 ];
 const hangManImage = document.querySelector("#image");
-const solutionContainer = document.querySelector(".solution-container");
+const solutionContainer = document.querySelector("#solution-container");
 const winOrLoseContainer = document.querySelector(".win-lose-container");
 const letterContainer = document.querySelector(".letter-container");
 const gameState = {
@@ -79,6 +79,9 @@ function selectRandomWord() {
 
 function emptySolutionContainer() {
   // empty the solutionContainer (remove all .letter elements)
+  while (solutionContainer.children.length > 0) {
+    solutionContainer.removeChild(solutionContainer.children[solutionContainer.children.length - 1]) ;
+  }
 }
 
 function fillSolutionContainer() {
@@ -108,6 +111,7 @@ function initGameState() {
   gameState.lettersFound = 0;
   gameState.won = false;
   gameState.lost = false;
+  emptySolutionContainer();
   fillSolutionContainer();
   winOrLoseContainer.textContent = '';
   removeClassesFromAllLetters();
