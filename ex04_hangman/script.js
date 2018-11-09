@@ -103,9 +103,9 @@ function fillSolutionContainer() {
 function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
-  let letters=letterContainer.querySelectorAll('letter')
+  let letters=letterContainer.querySelectorAll('.letter');
   letters.forEach((value)=>{
-    value.classList.remove('succes','failed');
+    value.classList.remove('success','failed');
   });
 
 }
