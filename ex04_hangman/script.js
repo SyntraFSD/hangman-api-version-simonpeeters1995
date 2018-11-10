@@ -98,8 +98,8 @@ function removeClassesFromAllLetters() {
   // remove the failed and success classes from all .letter
   // use [node-element].classList.remove();
   let letterklasse = document.querySelectorAll('.letter');
-  letterklasse.forEach(letterklas => {
-    letterklas.classList.remove ('failed', 'succes');
+  letterklasse.forEach((letterklas) => {
+    letterklas.classList.remove('failed', 'success');
   });
 }
 
@@ -107,7 +107,7 @@ function updateHangmanPicture() {
   // change the hangman picture source to the appropriate image (gameState.hangman)
   // the source of each image looks like this: 'images/hangman01.png'
   // of course the number changes, from 01 to 09
-  hangManImage.src =`ìmages/hangman0$(gameState.hangman).png`;
+  hangManImage.src ='images/hangman0' + gameState.hangman + '.png';
 }
 
 function initGameState() {
@@ -130,24 +130,35 @@ function winOrLose() {
   // if so the winOrLoseContainer text should be updated with an appropriate message
   if (gameState.hangman == 9){
     gameState.lost=true;
-    return winOrLoseContainer.textContent = "Je hebt woord niet gevonden";
+    return winOrLoseContainer.textContent = `Je hebt woord niet gevonden, het woord was ${gameState.word.join('')}`;
   }
   else if (gameState.lettersFound == gameState.word.length){
     gameState.won =true;
-    return winOrLoseContainer.textContent = "Proficiat je het het woord gevonden";}
+    return winOrLoseContainer.textContent = "Proficiat je het woord gevonden";}
 }
 
 function letterClicked(event) {
-
-  let gekozenLetter = event.target;  
-  if(event.target.matches(".letter") && !gameState.lost && !gameState.won){
-      let teller = 0;
-      for(let i=0;i < gameState.word.length;i++){
-        let huidigeLetter = gameState.word[i];
-        if (gekozenLetter == huidigeletter)
-           
-        teller += 1;
+  if(event.target.matches(".letter") && !gameState.lost && !gameState.won && !event.target.matches('.success')&& !event.target.matches('.failed')){
+      let clickedLetter = event.target.textContent;
+      let letterMatches = 0;
+      for (let i = 0; i < gameState.word.length; i++) {
+      //gameState.word.foreach(function(letter,index){
+        if (gameState.word[i].toUpperCase() === clickedLetter) {
+          letterMatches++;
+          const solutionLetter = solutionContainer.querySelector('.solution-letter:nth-child(' + (i + 1) +')');
+          solutionLetter.textContent = clickedLetter;
+        }
       }
+  if (letterMatches > 0) {
+    gameState.lettersFound += letterMatches;
+    event.target.classList.add('success')
+  }
+  else {
+    gameState.hangman++;
+    event.target.classList.add('failed')
+    updateHangmanPicture();
+  }
+    winOrLose();
   }
 
 
