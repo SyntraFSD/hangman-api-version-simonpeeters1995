@@ -97,7 +97,7 @@ function removeClassesFromAllLetters() {
   // use [node-element].classList.remove();
  let letter = document.querySelectorAll('#letter-container');
  for (var = i; i < 27; i++){
-   letter.classList.remove(success, failed)
+   letter.classList.remove(success, failed);
     }
  }
 
@@ -125,12 +125,17 @@ function initGameState() {
   winOrLoseContainer.textContent = '';
   removeClassesFromAllLetters();
   updateHangmanPicture();
+
+
 }
 
 function winOrLose() {
-  // checks if the player has won or lost,
-  // if so the winOrLoseContainer text should be updated with an appropriate message
-}
+    // checks if the player has won or lost,
+    // if so the winOrLoseContainer text should be updated with an appropriate message
+    if ((gameState.word.length !=== solutionContainer.length) && (gameState.turn > 10)) {
+      WinOrLoseContainer.textContent = "You lose";
+    }
+
 
 function letterClicked(event) {
   // this is of course the heart of this game,
