@@ -43,7 +43,56 @@ In deze module gebruiken we allemaal chrome zodat we allemaal hetzelfde resultaa
 ## Oefeningen:
 ### Oefening 04: Hangman
 #### Doel:
-Hangman, nothing more, nothing less..
+Hangman spel:
+- Bovenaan in het script staat een `array` met woorden `randomWords` waaruit elk spel 
+een willekeurig woord wordt gekozen.
+- Html en CSS zijn reeds aanwezig:  
+   - Letter knoppen:  
+     ```html
+     <div id="letter-container">
+       <div class="letter">A</div>
+       <div class="letter">B</div>
+       <div class="letter">C</div>
+       <div class="letter">D</div>
+       <div class="letter">E</div>
+       ...
+     </div>
+     ```
+     Door op deze letters te klikken kan de gebruiker een letter kiezen.
+     Elke letter kan slechts eenmaal gekozen worden.
+     Wanneer een letter gekozen is krijgt hij ofwel de klasse `failed` als de letter niet werd gevonden,
+     of `success` als de letter wel in het woord zat.
+   - In de map `/images` vind je 9 images terug die de verschillende stappen van de galg weergeven.  
+     Als de spelen een foute letter wordt gekozen moet dus telkens de volgende afbeelding getoond worden.  
+     Als afbeelding 9 wordt getoond is het spel afgelopen.
+     ```html
+       <section id="image-container">
+         <img id="image" src="images/hangman01.png" alt="">
+       </section>
+     ```
+   - De `#solution-container` moet elk spel gevuld worden met het correcte aantal `.solution-letter`.  
+   Als een nieuw spel begint met een 4-letter woord moet de `#solution-container` er als volgt uitzien:
+     ```html
+       <section id="solution-container">
+         <div class="solution-letter"></div>
+         <div class="solution-letter"></div>
+         <div class="solution-letter"></div>
+         <div class="solution-letter"></div>
+       </section>
+     ```  
+     Wanneer een letter gevonden is vul je deze in de juiste `.solution-letter` in:
+     ```html
+       <div class="solution-letter">E</div>
+     ```
+   - Als het spel afgelopen is toon je een gepaste boodschap in `#win-lose-container`.
+   Als de speler op deze knop klikt begint er een nieuw spel:  
+     ```html
+       <section id="win-lose-container">
+         You won!
+       </section>
+     ```
+      
+
 
 
 
