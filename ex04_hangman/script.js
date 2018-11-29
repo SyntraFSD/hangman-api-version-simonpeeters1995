@@ -71,7 +71,7 @@ function createNewSolutionLetter() {
 
 function selectRandomWord() {
   // return random word from the randomWords array and split it up into an array
-  let randomWord = randomWords[Math.floor(Math.random()*randomWords.length)];
+  const randomWord = randomWords[Math.floor(Math.random()*randomWords.length)];
   return randomWord.split('');
 }
 
@@ -133,9 +133,11 @@ function winOrLose() {
   // if so the winOrLoseContainer text should be updated with an appropriate message
   let solutionWord = gameState.word
   if  (gameState.word === randomWords.length) {
+      gameState.won = true;
   return winOrLoseContainer.innerHTML = "You win"};
     
-  if (gameState.turn == 9){
+  if (gameState.turn === 9){
+    gameState.lost = true;
     return winOrLoseContainer.innerHTML = "You lost"};
 }
 
@@ -152,24 +154,29 @@ function letterClicked(event) {
   // make sure .letter with a success or .failed class can not be clicked
 
   if (event.target.matches('.letter') && !gameState.lost && !gameState.won) {
-    const clickedLetter = event.target.textContent;
-    let letterMatches = 0;
-    gameState.word.forEach(function(letter, index){
-      if (letter.toUpperCase() === clickedLetter) {
-        letterMatches++;
-        const solutionLetter = solutionContainer.querySelector('.solution-letter:nth-child(' + (index = 1) + ')');
-        solutionLetter.textContent = clickedLetter;
+    if (!event.target.matches('.success') && !event.target.matches('.failed')) {
+      const selectedLetter = event.target.textContent;
+      let lettersFound = 0;
+      gameState.word.forEach(function (letter, index) {
+        if (letter.toUpperCase() === selectedLetter) {
+          lettersFound++;
+          const solutionLetter = document.querySelector('.solution-letter:nth-child(' + (index + 1) + ')');
+          solutionLetter.textContent = letter.toUpperCase();
+        }
+      });
+      gameState.turn++;
+      if (lettersFound > 0) {
+        gameState.lettersFound += lettersFound;
+        event.target.classList.add('success');
+      } else {
+        event.target.classList.add('failed');
+        gameState.hangman++;
+        updateHangmanPicture();
       }
-    });
-
-  if (letterMatches > 0) {
-    gameState.lettersFound += letterMatches;
-    event.target.classList.add("success");
-  };
-  }
-
-}
-
+      winOrLose();
+    }
+    }
+    }
 initGameState();
 
 letterContainer.addEventListener('click', letterClicked);
