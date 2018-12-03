@@ -149,8 +149,14 @@ function letterClicked(event) {
   // add 'failed' when the letter is not (use [node-element].classList.add())
   // don't forget to update the hangman picture
   // make sure .letter with a success or .failed class can not be clicked
+  if 
   const letterClicked = event.target.closest('.letter');
   console.log(letterClicked.textContent.toLowerCase());
+
+  gameState.word.forEach(function(letter){
+    if
+    
+  });
 }
 
 initGameState();
