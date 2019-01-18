@@ -58,7 +58,7 @@ function updateHangmanPicture() {
 
 
 function initGameState(randomWord) {
-  gameState.word = randomWord;
+  gameState.word = randomWord.split('');
   gameState.hangman = 1;
   gameState.turn = 1;
   gameState.lettersFound = 0;
